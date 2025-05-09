@@ -23,26 +23,37 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _HexTexture:
+        m_Texture: {fileID: 2800000, guid: 358d506205c1a5c4aaaa2c360ab271bb, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 7cee5e56eaf60144e8496c5c3190eec3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaThreshold: 0.23
     - _Density: 20
+    - _FresnelPower: 1
     - _Glossiness: 0.5
     - _HexSharpness: 0.88
     - _Metallic: 0
+    - _ScanlineFrequency: 600
+    - _ScanlineIntensity: 0.806
+    - _ScanlineSpeed: 2
     - _Speed: 1
     - _TextureSpeed: 0.05
     - _Tiling: 1.12
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 0, g: 1, b: 0.81088686, a: 1}
+    - _GlowColor: {r: 0.09579086, g: 0, b: 1, a: 1}
     - _HexColor: {r: 0, g: 1, b: 1, a: 1}
     - _HexOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _HexTiling: {r: 10, g: 10, b: 0, a: 0}
-    - _MainColor: {r: 1, g: 0, b: 0, a: 1}
+    - _HexTiling: {r: 5, g: 5, b: 0, a: 0}
+    - _MainColor: {r: 0, g: 0.992157, b: 1, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _TextureSpeed: {r: 0.1, g: 0, b: 0, a: 0}
+    - _TextureSpeed: {r: 0, g: 0.3, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
