@@ -1,4 +1,4 @@
-﻿Shader "Custom/ShieldFinal"
+﻿Shader "Custom/ShieldFinal_Builtin"
 {
     Properties
     {
@@ -14,6 +14,8 @@
         _ScanlineFrequency("Scanline Frequency", Float) = 600
         _ScanlineSpeed("Scanline Speed", Float) = 2
         _ScanlineIntensity("Scanline Intensity", Range(0, 1)) = 0.5
+
+        _IntersectionOffset("Intersection Offset", Float) = 0.6
     }
 
     SubShader
@@ -21,7 +23,6 @@
         Tags { "Queue" = "Transparent" "RenderType" = "Transparent" }
         Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off
-        ZTest LEqual
         Cull Off
 
         Pass
@@ -46,7 +47,8 @@
             float _ScanlineSpeed;
             float _ScanlineIntensity;
 
-            // Soft Light Blend
+            float _IntersectionOffset;
+
             float SoftLight(float a, float b)
             {
                 return (1.0 - 2.0 * b) * a * a + 2.0 * b * a;
@@ -64,7 +66,7 @@
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
                 float3 worldNormal : TEXCOORD1;
-                float3 worldViewDir : TEXCOORD2;
+                float3 viewDir : TEXCOORD2;
                 float4 screenPos : TEXCOORD3;
             };
 
@@ -76,47 +78,47 @@
 
                 o.uv = v.uv * _HexTiling.xy + (_Time.y * _TextureSpeed.xy);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
-                o.worldViewDir = normalize(_WorldSpaceCameraPos - worldPos.xyz);
+                o.viewDir = normalize(_WorldSpaceCameraPos - worldPos.xyz);
                 o.screenPos = ComputeScreenPos(o.vertex);
-
                 return o;
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // Sample hex pattern
+                // Hex pattern
                 float4 tex = tex2D(_HexTexture, i.uv);
-                float texValue = tex.r;
-                if (texValue < _AlphaThreshold)
+                float texVal = tex.r;
+                if (texVal < _AlphaThreshold)
                     discard;
 
-                // Scanlines (screenspace)
+                // Scanlines (screen-space)
                 float2 screenUV = i.screenPos.xy / i.screenPos.w;
                 float scan = sin(screenUV.y * _ScanlineFrequency + _Time.y * _ScanlineSpeed);
-                float scanValue = smoothstep(0.3, 0.7, scan * 0.5 + 0.5) * _ScanlineIntensity;
+                float scanVal = smoothstep(0.3, 0.7, scan * 0.5 + 0.5) * _ScanlineIntensity;
 
-                // Final pattern input = hex × scanlines
-                float blendInput = texValue * scanValue;
+                float blendInput = texVal * scanVal;
 
-                // Glow (Fresnel + Intersection)
-                float fresnel = pow(1.0 - saturate(dot(i.worldViewDir, i.worldNormal)), _FresnelPower);
+                // Fresnel glow
+                float fresnel = pow(1.0 - saturate(dot(i.viewDir, i.worldNormal)), _FresnelPower);
 
-                float sceneZ = LinearEyeDepth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.screenPos)).r);
-                float fragZ = LinearEyeDepth(i.screenPos.z);
-                //float depthFade = smoothstep(0.05, 0.0, abs(sceneZ - fragZ));
+                // Intersection mask (Built-in friendly)
+                float sceneRawDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, screenUV);
+                float sceneDepth = Linear01Depth(sceneRawDepth);
+                float fragDepth = i.screenPos.a - _IntersectionOffset;
+                float interMask = smoothstep(0.0, 1.0, 1.0 - (sceneDepth - fragDepth));
 
-                float glowValue = fresnel;
+                // Combine glow (fresnel + intersection)
+                float glowVal = saturate(fresnel + interMask);
 
-                // Final alpha using soft light
-                float finalAlpha = SoftLight(glowValue, blendInput);
-                finalAlpha = saturate(finalAlpha);
+                // Final alpha (softlight blend)
+                float finalAlpha = saturate(SoftLight(glowVal, blendInput));
 
-                // Color based on inputs
+                // Final color
                 float4 baseColor = _MainColor * blendInput;
                 float4 fresnelGlow = _FresnelColor * fresnel;
-                //float4 intersectionGlow = _GlowColor * depthFade;
+                float4 interGlow = _GlowColor * interMask;
 
-                float4 color = baseColor + fresnelGlow;
+                float4 color = baseColor + fresnelGlow + interGlow;
                 color.a = finalAlpha;
 
                 return color;

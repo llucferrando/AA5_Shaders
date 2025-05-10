@@ -39,7 +39,9 @@ Material:
     - _Glossiness: 0.5
     - _GlowFade: 0.05
     - _HexSharpness: 0.88
+    - _IntersectionOffset: 0.6
     - _Metallic: 0
+    - _Offset: 0.6
     - _ScanlineFrequency: 600
     - _ScanlineIntensity: 0.909
     - _ScanlineSpeed: 2
@@ -49,7 +51,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _FresnelColor: {r: 0, g: 0.5216336, b: 1, a: 1}
-    - _GlowColor: {r: 0.09579086, g: 0, b: 1, a: 1}
+    - _GlowColor: {r: 0, g: 0.43987563, b: 0.46226418, a: 1}
     - _HexColor: {r: 0, g: 1, b: 1, a: 1}
     - _HexOffset: {r: 0, g: 0, b: 0, a: 0}
     - _HexTiling: {r: 6, g: 6, b: 0, a: 0}
