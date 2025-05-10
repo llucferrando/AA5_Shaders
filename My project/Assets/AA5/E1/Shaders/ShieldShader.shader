@@ -103,9 +103,9 @@
 
                 float sceneZ = LinearEyeDepth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.screenPos)).r);
                 float fragZ = LinearEyeDepth(i.screenPos.z);
-                float depthFade = smoothstep(0.05, 0.0, abs(sceneZ - fragZ));
+                //float depthFade = smoothstep(0.05, 0.0, abs(sceneZ - fragZ));
 
-                float glowValue = fresnel + depthFade;
+                float glowValue = fresnel;
 
                 // Final alpha using soft light
                 float finalAlpha = SoftLight(glowValue, blendInput);
@@ -114,9 +114,9 @@
                 // Color based on inputs
                 float4 baseColor = _MainColor * blendInput;
                 float4 fresnelGlow = _FresnelColor * fresnel;
-                float4 intersectionGlow = _GlowColor * depthFade;
+                //float4 intersectionGlow = _GlowColor * depthFade;
 
-                float4 color = baseColor + fresnelGlow + intersectionGlow;
+                float4 color = baseColor + fresnelGlow;
                 color.a = finalAlpha;
 
                 return color;

@@ -1,61 +1,60 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Unlit/Intersection Glow"
+Shader "Custom/IntersectionGlow"
 {
-	Properties
-	{
-		_Color ("Color", Color) = (1,0,0,1)
-	}
-	SubShader
-	{
-		Tags { "RenderType"="Transparent" "Queue"="Transparent" }
-		LOD 100
-		Blend One One // additive blending for a simple "glow" effect
-		Cull Off // render backfaces as well
-		ZWrite Off // don't write into the Z-buffer, this effect shouldn't block objects
-		Pass
-		{
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
+    Properties
+    {
+        _Offset("Offset", Float) = 0.6
+        _EmissionColor("Emission Color", Color) = (0, 1, 1, 1)
+        _Albedo("Albedo", Color) = (1, 1, 1, 1)
+    }
+    SubShader
+    {
+        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
+        ZWrite Off
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "UnityCG.cginc"
 
-			#include "UnityCG.cginc"
+            sampler2D _CameraDepthTexture;
+            float4 _EmissionColor;
+            float4 _Albedo;
+            float _Offset;
 
-			struct appdata
-			{
-				float4 vertex : POSITION;
-			};
+            struct appdata
+            {
+                float4 vertex : POSITION;
+            };
 
-			struct v2f
-			{
-				float4 screenPos : TEXCOORD0;
-				float4 vertex : SV_POSITION;
-			};
+            struct v2f
+            {
+                float4 pos : SV_POSITION;
+                float4 screenPos : TEXCOORD0;
+            };
 
-			sampler2D _CameraDepthTexture; // automatically set up by Unity. Contains the scene's depth buffer
-			fixed4 _Color;
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.screenPos = ComputeScreenPos(o.pos);
+                return o;
+            }
 
-			v2f vert (appdata v)
-			{
-				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.screenPos = ComputeScreenPos(o.vertex);
-				return o;
-			}
+            fixed4 frag(v2f i) : SV_Target
+            {
+                float sceneDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.screenPos.xy / i.screenPos.w);
+                float fragDepth = i.screenPos.z / i.screenPos.w;
 
-			fixed4 frag (v2f i) : SV_Target
-			{
-				//Get the distance to the camera from the depth buffer for this point
-                float sceneZ = LinearEyeDepth (tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.screenPos)).r);
-                //Actual distance to the camera
-                float fragZ = i.screenPos.z;
+                float diff = sceneDepth - fragDepth + _Offset;
+                float alpha = smoothstep(0.0, 1.0, 1.0 - diff);
 
-                //If the two are similar, then there is an object intersecting with our object
-				float factor = 1-step( 0.1, abs(fragZ-sceneZ) );
-
-				return factor * _Color;
-			}
-			ENDCG
-		}
-	}
+                float3 finalColor = _Albedo.rgb + _EmissionColor.rgb * alpha;
+                return float4(finalColor, alpha);
+            }
+            ENDCG
+        }
+    }
+    FallBack "Transparent/Diffuse"
 }
