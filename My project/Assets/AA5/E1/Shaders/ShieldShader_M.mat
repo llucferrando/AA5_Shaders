@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_TestUnlit
+  m_Name: ShieldShader_M
   m_Shader: {fileID: 4800000, guid: 0067d5f0d0961ee4b96d55474fa86f0c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,11 +29,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Ramp: 2.87
+    - _DepthBlend: 3
+    - _Depth_Blend: 0.6
+    - _Fresnel_Power: 1.5
+    - _GlowWidth: 1
+    - _IntersectionOffset: 0.5
+    - _Offset: 0.43
+    - _Ramp: 2.9
+    - _ScanlineDensity: 47.1
+    - _ScanlineSpeed: 7.1
+    - _SoftBlendIntensity: -0.62
     m_Colors:
-    - _ColorOne: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorTwo: {r: 0, g: 0.39492464, b: 1, a: 1}
-    - _FresnelGlowColor: {r: 0, g: 0.7, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.50261784, b: 1, a: 1}
+    - _ColorOne: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorTwo: {r: 0, g: 0.3960786, b: 1, a: 1}
+    - _FresnelGlowColor: {r: 0, g: 0.69803953, b: 1, a: 1}
     - _MainTexTiling: {r: 5, g: 5, b: 0, a: 0}
     - _ScrollSpeed: {r: 0, g: 1, b: 0, a: 0}
+    - _Texture_Speed: {r: 0, g: 0.3, b: 0, a: 0}
+    - _Texture_Tiling: {r: 3, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
