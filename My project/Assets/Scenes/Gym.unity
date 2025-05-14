@@ -142,6 +142,11 @@ GameObject:
   m_IsActive: 1
 --- !u!108 &705507994
 Light:
+  m_CorrespondingSourceObject: {fileID: 5387277665530882210, guid: c72544058058d404c8e66576dc55ca7b, type: 3}
+  m_PrefabInstance: {fileID: 1591572963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1591572963
+PrefabInstance:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
