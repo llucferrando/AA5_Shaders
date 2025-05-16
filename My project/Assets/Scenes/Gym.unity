@@ -208,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368411570}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 12.08, y: 5.11, z: -10.15}
+  m_LocalPosition: {x: 12.08, y: 1.72, z: -10.15}
   m_LocalScale: {x: 1, y: 2.3979023, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -588,9 +588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b9cbfa39a86bb45a5e79b8059cb1c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 963194227}
-  drawShader: {fileID: 4800000, guid: f089b60945a36c34a95f1537818ef662, type: 3}
-  _brushSize: 7
+  _camera: {fileID: 963194227}
+  _drawShader: {fileID: 4800000, guid: f089b60945a36c34a95f1537818ef662, type: 3}
+  _brushSize: 8
   _brushStrength: 1
 --- !u!1 &1193326162
 GameObject:
@@ -604,7 +604,6 @@ GameObject:
   - component: {fileID: 1193326165}
   - component: {fileID: 1193326164}
   - component: {fileID: 1193326163}
-  - component: {fileID: 1193326167}
   - component: {fileID: 1193326168}
   m_Layer: 0
   m_Name: Sphere
@@ -692,30 +691,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193326162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.41, y: 5.08, z: -10.6}
+  m_LocalPosition: {x: 10.41, y: 4.42, z: -10.6}
   m_LocalScale: {x: 0.45199, y: 0.45199, z: 0.45199}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1193326167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193326162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5d4c3b11f500ed4993e7f4ec568c457, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drawShader: {fileID: 4800000, guid: f089b60945a36c34a95f1537818ef662, type: 3}
-  _terrain: {fileID: 1090954562}
-  _spherePos: {fileID: 1193326166}
-  _brushSize: 4
-  _brushStrength: 1
 --- !u!54 &1193326168
 Rigidbody:
   m_ObjectHideFlags: 0
