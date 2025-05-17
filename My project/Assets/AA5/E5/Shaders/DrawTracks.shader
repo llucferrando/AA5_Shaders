@@ -40,7 +40,7 @@ Shader "Unlit/DrawTracks"
             fixed4 _Coordinate,_Color;
             half _Size,_Strenght;
 
-            v2f vert (appdata v)
+             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
