@@ -25,14 +25,22 @@ Material:
     m_TexEnvs:
     - _CrackedSnow:
         m_Texture: {fileID: 2800000, guid: 1096b820de8554b449261c4c479dd604, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 12, y: 12}
         m_Offset: {x: 0, y: 0}
     - _CrackedSnow_Mask:
-        m_Texture: {fileID: 2800000, guid: 29c5c4537d6edff43b0d32b57c53b42e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CrackedSnow_Normal:
+        m_Texture: {fileID: 2800000, guid: 626ff16a35fcedb41a5ff5b73200de2e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GroundMask:
         m_Texture: {fileID: 2800000, guid: be3990994b3d94d429a25b48dc541fcd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GroundNormal:
+        m_Texture: {fileID: 2800000, guid: 29c5c4537d6edff43b0d32b57c53b42e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GroundTex:
@@ -41,6 +49,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 57880adf6530ad046a81da17a0640ef4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MidMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MidNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MidTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Splat:
@@ -53,25 +73,42 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SurfaceSnow:
         m_Texture: {fileID: 2800000, guid: 57880adf6530ad046a81da17a0640ef4, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 12, y: 12}
         m_Offset: {x: 0, y: 0}
     - _SurfaceSnow_Mask:
-        m_Texture: {fileID: 2800000, guid: 626ff16a35fcedb41a5ff5b73200de2e, type: 3}
+        m_Texture: {fileID: 2800000, guid: a59968473037bb54aae49bb0a88faa40, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SurfaceSnow_Normal:
-        m_Texture: {fileID: 2800000, guid: a86968f77fd006e43894c3e5964fb46f, type: 3}
+        m_Texture: {fileID: 2800000, guid: a59968473037bb54aae49bb0a88faa40, type: 3}
+        m_Scale: {x: 12, y: 12}
+        m_Offset: {x: 0, y: 0}
+    - _TopMask:
+        m_Texture: {fileID: 2800000, guid: f9cf2e4e6080f8548a339d38ba5ba7e1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopNormal:
+        m_Texture: {fileID: 2800000, guid: a59968473037bb54aae49bb0a88faa40, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopTex:
+        m_Texture: {fileID: 2800000, guid: 57880adf6530ad046a81da17a0640ef4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Displacement: 0.065
-    - _Glossiness: 0.5
+    - _Blend: 0.01
+    - _BlendSharpness: 2.4
+    - _Displacement: 0.07
+    - _Glossiness: 0
+    - _MaxHeight: 1.88
     - _Metallic: 0
-    - _Tess: 32
+    - _MinHeight: 0.84
+    - _Tess: 2.7
+    - _Tiling: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _CrackedColor: {r: 0.37647063, g: 0.32156864, b: 0.27450982, a: 1}
+    - _CrackedColor: {r: 1, g: 1, b: 1, a: 1}
     - _GroundColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
-    - _SurfaceColor: {r: 0.882353, g: 0.92549026, b: 0.9686275, a: 1}
+    - _SurfaceColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

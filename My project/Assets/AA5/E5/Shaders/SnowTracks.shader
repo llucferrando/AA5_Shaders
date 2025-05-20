@@ -91,7 +91,7 @@ Shader "Custom/NewSurfaceShader"
             // Normal
             fixed3 normal0 = UnpackNormal(tex2D(_SurfaceSnow_Normal, IN.uv_SurfaceSnow_Normal));
             fixed3 normal1 = UnpackNormal(tex2D(_CrackedSnow_Normal, IN.uv_CrackedSnow_Normal));
-            o.Normal = normalize(lerp(normal0, normal1, amount));
+            o.Normal = float3(0, 0, 1);
 
             // Mask maps
             fixed4 mask0 = tex2D(_SurfaceSnow_Mask, IN.uv_SurfaceSnow_Mask);
