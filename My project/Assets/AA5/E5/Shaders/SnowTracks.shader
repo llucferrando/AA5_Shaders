@@ -60,7 +60,7 @@ Shader "Custom/NewSurfaceShader"
         {
 
             float height = tex2Dlod(_Splat, float4(v.texcoord.xy, 0, 0)).r;
-            float disp = -_Displacement * (1 - height); // nieve baja en pisadas (r = 0)
+            float disp = -_Displacement * (1 - height); 
             v.vertex.xyz += v.normal * -disp;
             // float d = tex2Dlod(_Splat, float4(v.texcoord.xy,0,0)).r * _Displacement;
             // v.vertex.xyz -= v.normal * d;
@@ -98,13 +98,14 @@ Shader "Custom/NewSurfaceShader"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            float height = tex2D(_Splat, IN.uv_Splat).r;
-                            // Albedos
+                float height = tex2D(_Splat, IN.uv_Splat).r;
+                
+                // Albedos
                 float3 albedo_snow = tex2D(_SurfaceSnow, IN.uv_SurfaceSnow).rgb * _SurfaceColor.rgb;
                 float3 albedo_crack = tex2D(_CrackedSnow, IN.uv_CrackedSnow).rgb * _CrackedColor.rgb;
                 float3 albedo_ground = tex2D(_GroundTexture, IN.uv_Splat).rgb * _GroundColor.rgb;
 
-                // Blend weights (transiciones suaves)
+                // Blend weights 
                 float snow_w   = saturate(1.0 - smoothstep(_Threshold0 - 0.05, _Threshold0 + 0.05, height));
                 float ground_w = smoothstep(_Threshold1 - 0.05, _Threshold1 + 0.05, height);
                 float crack_w  = 1.0 - snow_w - ground_w;
@@ -118,9 +119,17 @@ Shader "Custom/NewSurfaceShader"
                 float3 n_ground = UnpackNormal(tex2D(_GroundTexture_Normal, IN.uv_Splat));
                 o.Normal = normalize(n_snow * snow_w + n_crack * crack_w + n_ground * ground_w);
 
-                // Metallic y Smoothness constantes por ahora
+                // Metallic y Smoothness 
+
                 o.Metallic = _Metallic;
                 o.Smoothness = _Glossiness;
+
+                /* No nos funcionan los mask maps
+
+                fixed4 mask0 = tex2D(_SurfaceSnow_Mask, IN.uv_SurfaceSnow_Mask);
+                fixed4 mask1 = tex2D(_CrackedSnow_Mask, IN.uv_CrackedSnow_Mask);
+                o.Occlusion = occlusion;
+                */
 
                 o.Alpha = 1;
 
@@ -130,9 +139,3 @@ Shader "Custom/NewSurfaceShader"
     FallBack "Diffuse"
 }
 
-                        /* No nos funcionan los mask maps
-
-                fixed4 mask0 = tex2D(_SurfaceSnow_Mask, IN.uv_SurfaceSnow_Mask);
-                fixed4 mask1 = tex2D(_CrackedSnow_Mask, IN.uv_CrackedSnow_Mask);
-                o.Occlusion = occlusion;
-            */
