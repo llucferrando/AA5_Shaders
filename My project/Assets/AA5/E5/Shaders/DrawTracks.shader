@@ -2,7 +2,7 @@ Shader "Unlit/DrawTracks"
 {
     Properties
     {
-        _Color("Draw Color", Color) = (1,0,0,0)
+        _Color("Draw Color", Color) = (1,0,0,1)
         _Coordinate("Coordinate", Vector) = (0,0,0,0)
         _MainTex ("Texture", 2D) = "white" {}
         _Size("Size", Range(1,500)) = 1
@@ -54,8 +54,8 @@ Shader "Unlit/DrawTracks"
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 float draw = pow(saturate(1- distance(i.uv, _Coordinate.xy)),500/_Size);
-                fixed4 drawCol = _Color*(draw*_Strenght);
-                return saturate(col+drawCol);
+                fixed4 drawCol = fixed4(_Color.rgb * (draw * _Strenght), 1);
+                return saturate(col + drawCol);
 
             }
             ENDCG

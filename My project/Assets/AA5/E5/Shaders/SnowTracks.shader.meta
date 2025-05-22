@@ -4,8 +4,11 @@ ShaderImporter:
   externalObjects: {}
   defaultTextures:
   - _SurfaceSnow: {instanceID: 0}
+  - _SurfaceSnow_Normal: {instanceID: 0}
   - _CrackedSnow: {instanceID: 0}
-  - _GroundTex: {instanceID: 0}
+  - _CrackedSnow_Normal: {instanceID: 0}
+  - _GroundTexture: {instanceID: 0}
+  - _GroundTexture_Normal: {instanceID: 0}
   - _Splat: {instanceID: 0}
   nonModifiableTextures: []
   userData: 

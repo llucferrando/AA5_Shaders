@@ -24,11 +24,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _CrackedSnow:
-        m_Texture: {fileID: 2800000, guid: 1096b820de8554b449261c4c479dd604, type: 3}
-        m_Scale: {x: 12, y: 12}
+        m_Texture: {fileID: 2800000, guid: 55bf71e4f37f6374f85ad12e3aff1111, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CrackedSnow_Mask:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: be3990994b3d94d429a25b48dc541fcd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CrackedSnow_Normal:
@@ -45,6 +45,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _GroundTex:
         m_Texture: {fileID: 2800000, guid: 1096b820de8554b449261c4c479dd604, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GroundTexture:
+        m_Texture: {fileID: 2800000, guid: 1096b820de8554b449261c4c479dd604, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GroundTexture_Normal:
+        m_Texture: {fileID: 2800000, guid: 29c5c4537d6edff43b0d32b57c53b42e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -73,15 +81,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SurfaceSnow:
         m_Texture: {fileID: 2800000, guid: 57880adf6530ad046a81da17a0640ef4, type: 3}
-        m_Scale: {x: 12, y: 12}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SurfaceSnow_Mask:
-        m_Texture: {fileID: 2800000, guid: a59968473037bb54aae49bb0a88faa40, type: 3}
+        m_Texture: {fileID: 2800000, guid: f9cf2e4e6080f8548a339d38ba5ba7e1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SurfaceSnow_Normal:
         m_Texture: {fileID: 2800000, guid: a59968473037bb54aae49bb0a88faa40, type: 3}
-        m_Scale: {x: 12, y: 12}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TopMask:
         m_Texture: {fileID: 2800000, guid: f9cf2e4e6080f8548a339d38ba5ba7e1, type: 3}
@@ -104,11 +112,13 @@ Material:
     - _MaxHeight: 1.88
     - _Metallic: 0
     - _MinHeight: 0.84
-    - _Tess: 2.7
+    - _Tess: 32
+    - _Threshold0: 0.079
+    - _Threshold1: 0.892
     - _Tiling: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _CrackedColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GroundColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+    - _CrackedColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+    - _GroundColor: {r: 1, g: 1, b: 1, a: 1}
     - _SurfaceColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
